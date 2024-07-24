@@ -82,8 +82,12 @@ export default defineNuxtModule<ModuleOptions>({
     if (serverBundle === "auto") {
       serverBundle = nuxt.options.dev
         ? "local"
-        : KEYWORDS_EDGE_TARGETS.some((word) =>
-            process.env.NITRO_PRESET?.includes(word)
+        : KEYWORDS_EDGE_TARGETS.some(
+            (word) =>
+              (typeof nuxt.options.nitro.preset === "string" &&
+                nuxt.options.nitro.preset.includes(word)) ||
+              process.env.NITRO_PRESET?.includes(word) ||
+              process.env.SERVER_PRESET?.includes(word)
           )
         ? "remote"
         : "local";
