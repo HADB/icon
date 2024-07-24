@@ -63,6 +63,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     let serverBundle = options.serverBundle
     if (serverBundle === 'auto') {
+      logger.info(`Bean Test: ${JSON.stringify(options)}`)
       serverBundle = nuxt.options.dev
         ? 'local'
         : KEYWORDS_EDGE_TARGETS.some(word => typeof nuxt.options.nitro.preset === 'string' && nuxt.options.nitro.preset.includes(word))
