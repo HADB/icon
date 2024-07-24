@@ -77,8 +77,9 @@ export default defineNuxtModule<ModuleOptions>({
       options.provider = nuxt.options.ssr ? "server" : "client";
 
     let serverBundle = options.serverBundle;
+    logger.info(`process.env: ${JSON.stringify(process.env)}`);
+    logger.info(`nuxt: ${JSON.stringify(nuxt)}`);
     if (serverBundle === "auto") {
-      logger.info(`Bean Test: ${JSON.stringify(nuxt.options)}`);
       serverBundle = nuxt.options.dev
         ? "local"
         : KEYWORDS_EDGE_TARGETS.some(
